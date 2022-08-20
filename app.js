@@ -31,12 +31,12 @@ const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 
 // rateLimiter configuration //
-app.use(
-	rateLimiter({
-		windowMs: 15 * 60 * 1000, // using 15 mins
-		max: 100, // limit each IP to 100 requests per windowMs
-	})
-);
+// app.use(
+// 	rateLimiter({
+// 		windowMs: 15 * 60 * 1000, // using 15 mins
+// 		max: 100, // limit each IP to 100 requests per windowMs
+// 	})
+// );
 
 app.use(express.json()); // To parse POST requests //
 // extra packages
