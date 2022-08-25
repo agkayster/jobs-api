@@ -1,55 +1,63 @@
-import './App.css';
 import UserRegister from './components/userRegister';
 import UserLogin from './components/userLogin';
-import { useEffect, useState } from 'react';
+import { useState, Fragment } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Jobs from './components/jobs';
 import Navbar from './Navigation/Navbar';
+// import Navbar from './Navbar';
 import { Toaster } from 'react-hot-toast';
 import AppContext from './Utils/AppContext';
+import SecureRoute from './Utils/SecureRoute';
+import UpdateJobs from './components/updateJobs';
 
 function App() {
-	const [message, setMessage] = useState('');
-	const [token, setToken] = useState('');
-	useEffect(() => {
-		localStorage.getItem('message');
-		localStorage.getItem('token');
+	/* we use token and message in state to point directly to where token is in localStorage */
+	const [token, setToken] = useState(
+		localStorage.getItem('token') ? localStorage.getItem('token') : null
+	);
+	const [message, setMessage] = useState(
+		localStorage.getItem('message') ? localStorage.getItem('message') : null
+	);
 
-		setMessage('message');
-		setToken('token');
-	}, []);
-
-	console.log('get message', message);
-	console.log('get token', token);
 	return (
-		<AppContext.Provider value={{}}>
+		/* we pass token, message, setToken and setMessage to Context.Provider. Which makes it available everywhere in the App */
+		<AppContext.Provider value={{ token, message, setToken, setMessage }}>
 			<BrowserRouter>
-				<Navbar />
-				<Routes>
-					<Route path='/' element={<UserRegister />} />
-					<Route path='/login' element={<UserLogin />} />
-					<Route path='/jobs' element={<Jobs />} />
-				</Routes>
-				<Toaster
-					toastOptions={{
-						duration: 5000,
-						position: 'bottom-right',
-						success: {
-							style: {
-								background: '#333',
-								color: '#fff',
-							},
-						},
-						error: {
+				<Fragment>
+					<Navbar />
+					<Routes>
+						<Route
+							path='/jobs'
+							element={<SecureRoute Component={Jobs} />}
+						/>
+						<Route
+							path='/jobs/:id'
+							element={<SecureRoute Component={UpdateJobs} />}
+						/>
+						<Route path='/' element={<UserRegister />} />
+						<Route path='/login' element={<UserLogin />} />
+					</Routes>
+					<Toaster
+						toastOptions={{
 							duration: 5000,
-							position: 'bottom-left',
-							style: {
-								background: 'red',
-								color: '#fff',
+							position: 'top-right',
+							success: {
+								style: {
+									background: '#333',
+									color: '#fff',
+								},
 							},
-						},
-					}}
-				/>
+							error: {
+								duration: 5000,
+								position: 'bottom-left',
+								style: {
+									background: 'red',
+									color: '#fff',
+								},
+							},
+						}}
+					/>
+				</Fragment>
 			</BrowserRouter>
 		</AppContext.Provider>
 	);

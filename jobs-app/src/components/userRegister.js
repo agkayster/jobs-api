@@ -25,6 +25,7 @@ function UserRegister() {
 		}
 	};
 
+	// method to give us better display error //
 	const displayError = () => {
 		return error?.response?.data?.msg ===
 			'Duplicate value entered for email field, please choose another email value'
@@ -35,7 +36,7 @@ function UserRegister() {
 	console.log('get form data =>', formData);
 
 	return (
-		<div>
+		<div className='bg-[#eeb34b]'>
 			<div className='grid h-screen place-items-center'>
 				<form
 					className='bg-white shadow-md rounded px-8 pt-6 pb-8 border-2 w-96 font-["Roboto_Slab"]'
@@ -94,10 +95,12 @@ function UserRegister() {
 					</div>
 				</form>
 				<div className='registerLogin'>
-					<p>
+					<p className="font-['Roboto_Slab']">
 						Already registered? {''}
 						<Link to='/login'>
-							<span className='text-blue-700'>Please login</span>
+							<span className='text-black font-["Roboto_Slab"] hover:text-red-600'>
+								Please login
+							</span>
 						</Link>
 					</p>
 				</div>

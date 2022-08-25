@@ -1,20 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { axiosInstance } from '../Utils/API';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import AppContext from '../Utils/AppContext';
 
 function UserLogin() {
 	const navigate = useNavigate();
+	const { setToken, setMessage } = useContext(AppContext);
 	const [formData, setFormData] = useState({});
 	const [loginError, setLoginError] = useState({});
-	// const [message, setMessage] = useState('');
-	// const [token, setToken] = useState('');
-
-	// useEffect(() => {
-	// 	// setToken(localStorage.getItem('token'));
-
-	// }, []);
 
 	const handleLoginChange = (e) => {
 		const { id, value } = e.target;
@@ -26,27 +21,27 @@ function UserLogin() {
 		try {
 			const { data } = await axiosInstance.post('login', formData);
 
-			// localStorage.setItem('message');
-			// localStorage.setItem('token');
-			// toast(data?.msg);
-			// windows.location.pathname redirects to the path and refreshes the whole page//
-			console.log('get toast');
-			toast.success('Login Successfull');
-			// window.location.pathname = '/jobs';
+			/* We pass in data.token and data.msg to AppContext using in App.js */
+			setToken(data?.token);
+			setMessage(data?.msg);
 
-			/* Toast message works because of pathname in Login.js */
+			/* This sets our token and message in localStorage to be picked up in AppContext in App.js */
+			localStorage.setItem('message', data?.msg);
+			localStorage.setItem('token', data?.token);
+
+			console.log('get toast');
+			toast.success(data?.msg);
+
 			console.log('get new data =>', data);
+			/* navigate to jobs page */
 			navigate('/jobs');
 		} catch (error) {
+			/* We remove the localStorage if user is not authorised */
 			localStorage.removeItem('message');
 			localStorage.removeItem('token');
 			setLoginError(error);
 		}
 	};
-
-	// const toastClick = () => {
-	// 	toast(message);
-	// };
 
 	const getLoginError = () => {
 		if (loginError?.response?.data?.msg === 'Invalid Credentials') {
@@ -57,11 +52,9 @@ function UserLogin() {
 	};
 
 	console.log('get form data for login =>', formData);
-	// console.log('get token =>', token);
-	// console.log('get message =>', message);
 
 	return (
-		<div>
+		<div className='bg-[#eeb34b]'>
 			<div className='grid h-screen place-items-center'>
 				<form
 					className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 border-2 w-96 font-["Roboto_Slab"]'
@@ -107,7 +100,6 @@ function UserLogin() {
 							type='submit'>
 							Submit
 						</button>
-						{/* <ToastContainer /> */}
 					</div>
 				</form>
 			</div>
