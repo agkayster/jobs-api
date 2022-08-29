@@ -69,8 +69,6 @@ const Jobs = () => {
 
 	console.log('get jobs input form data =>', formData);
 
-	// if (jobs.length === 0)
-	// 	return <p className="font-['Roboto_Slab']">Loading...</p>;
 	return (
 		<JobsFormDisplay
 			handleJobsSubmit={handleJobsSubmit}

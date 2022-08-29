@@ -10,7 +10,7 @@ const UpdateJobsForm = ({
 	formData,
 }) => {
 	return (
-		<div className='relative bg-[#eeb34b] h-screen'>
+		<div className='relative bg-[#eeb34b] h-screen overflow-x-hidden'>
 			<div className='grid h-24 justify-center pt-5'>
 				<form
 					className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 border-2 w-96 font-["Roboto_Slab"]'
@@ -92,7 +92,7 @@ const UpdateJobsForm = ({
 					</div>
 				</form>
 			</div>
-			<div className='absolute top-0 right-0'>
+			<div className='absolute inset-x-64 top-[27.5rem] md:top-0 md:left-3/4'>
 				<Link to='/jobs'>
 					<button
 						className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-4/10 mr-5 mt-5'

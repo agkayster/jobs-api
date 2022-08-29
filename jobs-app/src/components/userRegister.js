@@ -36,7 +36,7 @@ function UserRegister() {
 	console.log('get form data =>', formData);
 
 	return (
-		<div className='bg-[#eeb34b]'>
+		<div className='bg-[#eeb34b] overflow-x-hidden'>
 			<div className='grid h-screen place-items-center'>
 				<form
 					className='bg-white shadow-md rounded px-8 pt-6 pb-8 border-2 w-96 font-["Roboto_Slab"]'

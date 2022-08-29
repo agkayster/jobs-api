@@ -11,7 +11,7 @@ const JobsFormDisplay = ({
 	handleDelete,
 }) => {
 	return (
-		<div className='container mx-auto px-4 bg-[#eeb34b] relative h-screen'>
+		<div className='container mx-auto px-4 bg-[#eeb34b] relative h-screen md:h-screen overflow-x-hidden'>
 			<div className='grid h-24 justify-center pt-3'>
 				<form
 					className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 border-2 w-96 font-["Roboto_Slab"]'
@@ -55,7 +55,7 @@ const JobsFormDisplay = ({
 				</form>
 			</div>
 			<div className='mt-64'>
-				<div className='w-full max-w-full flex sm:flex-col md:flex-row md:flex-wrap justify-between mt-5'>
+				<div className='w-full max-w-full grid grid-cols-2 gap-4 md:flex md:flex-row md:flex-wrap justify-between mt-5'>
 					{jobs &&
 						jobs.map(
 							({
