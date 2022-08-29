@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import { Navigate,} from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import AppContext from './AppContext';
 
 // Ensures that users cannot get to url routes without a token //
+// SecureRoute is exported to App.js //
 const SecureRoute = ({ Component }) => {
 	const { token } = useContext(AppContext);
 	// console.log('get secure route token =>', token);
