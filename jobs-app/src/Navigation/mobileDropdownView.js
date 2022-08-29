@@ -7,7 +7,7 @@ function MobileDropdownView({ isExpandable, token, message, logout }) {
 			<div
 				className={
 					(isExpandable ? 'top-[60px]' : 'top-[-200px]') +
-					' absolute z-50 w-full h-48 py-8 bg-[#fe8529] text-center transition-top ease-in-out duration-1000 md:bg-transparent md:border-0 md:flex md:flex-row justify-end md:py-4 md:pr-4 md:top-0 md:h-0 md:transition-none'
+					' absolute z-50 w-full h-48 py-8 bg-[#fe8529] text-center transition-top ease-in-out duration-1000 md:bg-transparent md:border-0 md:flex md:flex-row justify-end md:py-4 md:pr-4 md:top-[-300px] md:h-0 md:transition-none'
 				}>
 				<h2 className='text-black font-["Roboto_Slab"] md:mr-3'>
 					{/* This code works because of window.location.pathname in login.js which causes a refresh */}
