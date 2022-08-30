@@ -18,10 +18,10 @@ export default function Navbar() {
 
 	return (
 		<nav className='navigation bg-[#fe8529] block relative'>
-			<div className='flex justify-between py-3'>
+			<div className='flex justify-between py-3 z-50'>
 				<Link
 					to='/'
-					className='brand-name no-underline font-["Roboto_Slab"] text-black text-[1.3rem] ml-[1rem]'>
+					className='brand-name no-underline font-["Roboto_Slab"] text-black text-[1.3rem] ml-[1rem] z-50'>
 					JobsApp
 				</Link>
 				<HamburgerButton
